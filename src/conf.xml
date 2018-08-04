@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 编写连接数据库的配置文件 -->
+	<!-- 环境包括两种:(1)开发模式development (2)工作模式work -->
+	<properties>
+		<property name="driver" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="username" value="root"/>
+		<property name="password" value="lhy942821"/>
+	</properties>
+	<environments default="development">
+		<!-- environment可以集成多个环境 ,而且environment必须和外边的environments的id类型一致,否则将导致报错 -->
+		<environment id="development">
+			<!-- 事务类型包括 : JDBC和MANAGED,第一个就是自己会用JDBC的提交回滚,第二个是用容器来管理事务,例如Spring -->
+			<transactionManager type="JDBC" />
+			<!-- 数据源类型UNPOOLED表示每次请求来了之后都会打开关闭,所以就会慢一些.还有一个就是POOLED是用JDBC的池来管理,相对来说会快一些 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+	<!-- 用文件路径引入 -->
+		<mapper resource="movie/mapper/mapper.xml" />
+	</mappers>
+</configuration>

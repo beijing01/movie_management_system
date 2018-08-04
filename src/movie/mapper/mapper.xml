@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须要和Mapper接口名字一致 -->
+<!-- id必须要和Mapper中的方法名一致 -->
+<mapper namespace="movie.mapper.MovieMapper">
+	<!-- 1.添加一名一场电影信息 -->
+	<insert id="addMovie" parameterType="movie.model.Model">
+		insert into
+		movie_info
+		(movie,genre,critic,director,location,douban,tomatoes,idmb)
+		values
+		(#{movie},#{genre},#{critic} ,#{director} ,#{location}
+		,#{douban},#{tomatoes},
+		#{idmb})
+	</insert>
+	<!-- 2.删除一场电影信息 -->
+	<delete id="delMovieById" parameterType="int">
+		delete from movie_info where id = #{id}
+	</delete>
+	<!-- 3. 修改电影的信息 -->
+	<update id="updateMovie" parameterType="movie.model.Model">
+		update movie_info set movie = #{movie},genre = #{genre},critic = #{critic},
+		director = #{director},location = #{location},douban = #{douban},tomatoes = #{tomatoes},
+		idmb = #{idmb} where id = #{id}
+	</update>
+	<!--4. 查询所有电影的信息 -->
+	<select id="findMovies" resultType="movie.model.Model">
+		select * from movie_info	
+	</select>
+	<!-- 5. 需要查询电影的id -->
+	<select id="findMovieById" parameterType="int"
+		resultType="movie.model.Model">
+		select * from movie_info where id = #{id}
+	</select>
+	
+</mapper>

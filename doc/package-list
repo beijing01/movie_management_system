@@ -1,0 +1,9 @@
+movie.aop
+movie.common
+movie.constant
+movie.handlers
+movie.listener
+movie.mapper
+movie.model
+movie.service
+movie.thread
